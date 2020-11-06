@@ -1,17 +1,10 @@
 
 # About the project
 
-*This is a course page for IODS.*
+*This is a course page for IODS - Introduction to Open Data Science 2020.*
 
-I started late and I am **so** behind already :(
+This is my course portfolio, where all my assignments will appear. 
 
 [My page](https://karolint.github.io/IODS-project/)
 
-```{r}
-# This is a so-called "R chunk" where you can write R code.
-
-date()
-
-```
-Will not give up though!
-
+So, lets start!
