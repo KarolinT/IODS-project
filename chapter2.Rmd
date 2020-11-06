@@ -4,7 +4,7 @@
 date()
 ```
 
-First, use read in the dataset we use and name it learning2014.
+First, read in the dataset we use and name it learning2014.
 ```{r}
 learning2014=read.table("learning2014.csv", header= TRUE, sep=";")
 ```
@@ -19,13 +19,32 @@ The dataset has 166 rows and 7 columns, meaning
 ```{r}
 names(learning2014)
 ```
-*gender*, *age*
+- **gender** 
+
+- **age** 
+
+- **attitude** = global attitude toward statistics
+
+- **deep** = deep learning questions
+
+- **stra** = strategic learning questions
+
+- **surf** = surface learning questions
+
+- **points** = exam points
 
 
-#graphical overview, summaries of variables
+
+Graphical overview, summaries of variables
+
 ```{r}
 summary(learning2014)
+````
+110 women and 56 men answered. Median age was 22 years.
 
+
+We can see from a plot that men tended to be little older and have higher attitude towards statistics. Exam points were similarly distributed among men and women. 
+```{r}
 library(GGally)
 library(ggplot2)
 
@@ -38,34 +57,34 @@ p
 
 
 
-library(ggplot2)
-qplot(attitude, points, data = learning2014) + geom_smooth(method = "lm")
-
-
-
 ```{r}
 my_model2 <- lm(points ~ attitude + stra+surf, data = learning2014)
 summary(my_model2)
 ```
-
+Attitude is statistically significantly (p=0.003) related to exam points. With every extra point in attitude  average number of exam points increases by 3.4 points given strategic and surface learning questions are the same. Since surface learning is not significant in the model, we can remove it.
 
 ```{r}
 my_model3 <- lm(points ~ attitude+stra, data = learning2014)
 summary(my_model3)
 ```
 
-stra is also not statistically significant, but I keep it in the model.
+Strategic questions score is also not statistically significant, but I keep it in the model because of residual confounding.
+R-square is 0.19 - model doesn't describe much of the variability of exam points. There are much more that predicts your exam score. Only good attitude is not enough!
 
 Regression model has its assumpions.
 Assumptions have to fit the reality. If this isn't true, the model doesn't describe the phenomenon of interest.
 
-Errors have to be normally distributed, constant.
+Errors have to be normally distributed, constant, not depending on the exploratory variables.
 ```{r}
 par(mfrow = c(2,2))
 plot(my_model3, which=c(1,2,5))
 ```
 
-Residuals vs Fitted values, Normal QQ-plot and Residuals vs Leverage
+You also have to see that you don't have single observation that pull the regression line - that has high leverage. 
+
+
+
+-----------------
 
 - Describe your work and results clearly. 
 - Assume the reader has an introductory course level understanding of writing and reading R code as well as statistical methods.
