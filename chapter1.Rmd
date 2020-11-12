@@ -3,7 +3,7 @@
 
 *This is a course page for IODS - Introduction to Open Data Science 2020.*
 
-This is my course portfolio, where all my assignments will appear. 
+This is my course portfolio, where all my data analyses assignments will appear. 
 
 [My page](https://karolint.github.io/IODS-project/)
 
